@@ -1,6 +1,5 @@
 const express = require('express');
 const fileupload = require('express-fileupload');
-const pandoc = require('simple-pandoc');
 const fs = require('fs');
 const PORT = process.env.PORT || 8000;
 const API_KEY = process.env.API_KEY || "";
