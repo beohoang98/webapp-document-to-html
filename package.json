@@ -1,0 +1,19 @@
+{
+  "name": "beohoang-doc-html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "bash dev.bash"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cloudconvert": "^1.1.2",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.1-alpha.1"
+  }
+}

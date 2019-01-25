@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document to HTML</title>
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+</head>
+
+<body>
+    <div class="container">
+        <form action="/upload" id='form' class="box" method="POST" enctype="multipart/form-data">
+            <div class="field">
+                <label for="document" class="label">Document File</label>
+                <div class="control">
+                    <input type="file" class="input" name='document' accept=".pdf,.docx,.doc" placeholder="pdf & docx">
+                </div>
+            </div>
+            <div class="field">
+                <button class="button is-primary" id='button-upload'>UPLOAD</button>
+            </div>
+        </form>
+
+        <div>
+            <iframe src="" frameborder="0" id=content></iframe>
+        </div>
+    </div>
+
+    <div class="loading">
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+    </div>
+
+    <script>
+        (function ($) {
+            $(document).ready(() => {
+                $('#button-upload').on('click', (e) => {
+                    e.preventDefault();
+                    const formdata = new FormData($('#form')[0]);
+                    $('.loading').addClass('show');
+
+                    fetch('/upload', {
+                        method: 'POST',
+                        body: formdata,
+                    }).then(res=>{
+                        return res.text();
+                    }).then(text=>{
+                        $('#content').contents().find('body').html(text);
+                        $('.loading').removeClass('show');
+                    });
+                })
+            })
+        })(jQuery);
+
+    </script>
+</body>
+
+</html>
